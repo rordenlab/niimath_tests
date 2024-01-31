@@ -1,0 +1,1 @@
+trick.nii is designed to find bugs. It is a 4D volume, voxels 2, 4, 6 have been filled with unusual values (-INF, INF, NAN)
