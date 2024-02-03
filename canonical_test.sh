@@ -8,6 +8,7 @@
 # however, this could be set explicitly, e.g.
 #  exe="/Users/cr/fslmaths" canonical_test.sh
 exe=${exe:-niimath}
+#exe=${exe:-fslmaths}
 
 #tstexe is executable with "compare" function, e.g. niimath
 #n.b. fslmaths does not have this function
@@ -160,7 +161,6 @@ for op in $ops; do
  $tst
 done
 
-#ops="exp log sin cos tan asin acos atan sqr sqrt recip abs bin binv fillh fillh26 index edge nan nanm"
 ops="exp log sin cos tan asin acos atan sqr sqrt recip abs bin binv fillh fillh26 index nan nanm"
 inimg="trick"
 family="Unary"
@@ -172,10 +172,7 @@ for op in $ops; do
  $tst
 done
 
-
-#ops="dilM dilD dilF dilall ero eroF eroF fmedian fmean fmeanu subsamp2offc"
-#dilall differs check voxel i30j23k22 should be 3, fslmaths 2.99787
-ops="dilM dilD dilF ero eroF eroF fmedian fmean fmeanu subsamp2offc"
+ops="dilM dilD dilF ero eroF eroF fmedian subsamp2offc"
 inimg="trick3D"
 family="Filter"
 for op in $ops; do
@@ -220,6 +217,18 @@ $tst
 ops="edge"
 inimg="trick"
 family="Unary"
+thr=0.0001
+for op in $ops; do
+ echo Creating ${op}${family}
+ cmd="$exe $indir/$inimg -$op ${newout}${op}${family}"
+ $cmd
+ tst="$tstexe ${refout}${op}${family} --compare ${thr} ${newout}${op}${family}"
+ $tst
+done
+
+ops="fmean fmeanu"
+inimg="trick3D"
+family="Filter"
 thr=0.0001
 for op in $ops; do
  echo Creating ${op}${family}
