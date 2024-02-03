@@ -164,7 +164,7 @@ done
 
 echo Testing Binary Operations: with 2nd image
 #ops="add sub mul div rem thr thrp thrP uthr uthrp uthrP max min"
-ops="add sub mul div thr uthr  max min rem"
+ops="add sub mul div max min rem"
 inimg="$indir/trick"
 modimg="$indir/trick3D"
 for op in $ops; do

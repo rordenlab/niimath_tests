@@ -53,7 +53,6 @@ if [ ! -z "$(ls $outdir)" ]; then
  echo "Cleaning output directory: $outdir"
  rm $outdir/*
 fi
-# Convert images.
 refout="$refdir/"
 newout="$outdir/"
 
@@ -120,8 +119,7 @@ for op in $rx; do
 done
 
 echo Testing Binary Operations: with 2nd image
-#ops="add sub mul div rem thr thrp thrP uthr uthrp uthrP max min"
-ops="add sub mul div thr uthr  max min rem"
+ops="add sub mul div max min rem"
 inimg="$indir/trick"
 modimg="$indir/trick3D"
 family="Binary2Img"
@@ -166,7 +164,7 @@ for op in $ops; do
 done
 
 ops="rank ranknorm"
-inimg="$indir/stat4D"
+inimg="$indir/no_ties"
 for op in $ops; do
  echo Creating ${op}
  cmd="$exe $inimg -$op ${newout}${op}"

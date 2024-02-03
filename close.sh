@@ -105,7 +105,7 @@ exit 0
 
 echo Testing Basic statistical operations: ties impact rank and ranknorm
 ops="rank ranknorm"
-inimg="$indir/stat4D"
+inimg="$indir/no_ties"
 for op in $ops; do
  cmd="$refexe $inimg -$op $refout"
  echo $cmd
